@@ -53,6 +53,31 @@ class csvProcess {
     });
   }
 
+  async maintain_account(path, updatedData) {
+    let dataArray = [];
+    fs.createReadStream(path)
+      .pipe(csv())
+      .on("data", (data) => {
+        dataArray.push(data);
+      })
+      .on("end", () => {
+        const csvData = {
+          totalExpanse:
+            updatedData.totalExpanse + parseFloat(dataArray[0].totalExpanse),
+          totalIncome:
+            updatedData.totalIncome + parseFloat(dataArray[0].totalIncome),
+          totalTransactions:
+            updatedData.totalTransactions +
+            parseFloat(dataArray[0].totalTransactions),
+        };
+        fs.writeFile(path, parse(csvData), "utf8", (err) => {
+          if (err) {
+            throw err;
+          }
+        });
+      });
+  }
+
   generate_report(data) {
     const expanse = [];
     const income = [];
