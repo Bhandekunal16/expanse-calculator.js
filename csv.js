@@ -38,15 +38,40 @@ class csvProcess {
 
   append(path, data) {
     return new Promise((resolve, reject) => {
+      if (!fs.existsSync(path)) {
+        fs.writeFileSync(path, "", "utf8");
+        console.log(`File created: ${path}`);
+      }
       try {
-        const csvData = typeof data === "string" ? data : parse(data);
-        fs.appendFile(path, csvData + "\n", "utf8", (err) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(path);
-          }
-        });
+        let dataArray = [];
+        fs.createReadStream(path)
+          .pipe(csv())
+          .on("data", (input) => {
+            dataArray.push(input);
+          })
+          .on("end", () => {
+            if (dataArray[0] != data[0]) {
+              for (let index = 0; index < data.length; index++) {
+                let body = Object.values(data[index]);
+                fs.appendFile(path, body.join(",") + "\n", "utf8", (err) => {
+                  if (err) {
+                    reject(err);
+                  } else {
+                    resolve(path);
+                  }
+                });
+              }
+            } else {
+              const csvData = typeof data === "string" ? data : parse(data);
+              fs.appendFile(path, csvData + "\n", "utf8", (err) => {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve(path);
+                }
+              });
+            }
+          });
       } catch (error) {
         reject(error);
       }
