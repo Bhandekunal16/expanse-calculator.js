@@ -29,7 +29,6 @@ app.whenReady().then(() => {
       title: "BudgetMate",
       body: `Server: ${data}`,
     });
-
     notification.show();
   });
 
