@@ -52,7 +52,6 @@ app.post("/upload", upload.single("file"), async (req, res) => {
           bigIncomeName: report.bigIncomeName,
         }
       );
-
       res.send(`<a href="${download}">${download}</a>`);
     }
   } else {
