@@ -36,6 +36,23 @@ class csvProcess {
     });
   }
 
+  append(path, data) {
+    return new Promise((resolve, reject) => {
+      try {
+        const csvData = typeof data === "string" ? data : parse(data);
+        fs.appendFile(path, csvData + "\n", "utf8", (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(path);
+          }
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
   generate_report(data) {
     const expanse = [];
     const income = [];

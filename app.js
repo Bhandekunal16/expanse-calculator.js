@@ -60,6 +60,10 @@ app.post("/upload", upload.single("file"), async (req, res) => {
           avgExpense: report.avgExpense,
         }
       );
+      await Promise.all([
+        new csv().append(`report/ED.csv`, report.expanse),
+        new csv().append(`report/ID.csv`, report.income),
+      ]);
       res.send(`<a href="${download}">${download}</a>`);
     }
   } else {
