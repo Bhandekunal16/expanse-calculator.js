@@ -34,10 +34,35 @@ app.use("/report", express.static("report"));
 
 app.get("/", (req, res) => {
   res.send(`
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" name="file" />
-      <button type="submit">Upload</button>
-    </form>
+    <div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0%;
+    padding: 0%;
+  "
+>
+  <form
+    action="/upload"
+    method="post"
+    enctype="multipart/form-data"
+    style="
+      margin-top: 20%;
+      border: 1px #000 solid;
+      width: 40dvw;
+      height: 40dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <input type="file" name="file" />
+    <button type="submit">Upload</button>
+  </form>
+</div>
+
   `);
 });
 
