@@ -84,9 +84,9 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     if (req.file) {
       if (req.file.filename.endsWith(".csv")) {
         const ele = await new csv().read(`uploads/${req.file.filename}`);
-        const report = new csv().generate_report(ele);
-        if (report) res.send("wrong file input please insert correct data");
+        if (ele.length == 0) console.log("wrong file input ");
         else {
+          const report = new csv().generate_report(ele);
           const download = await new csv().write(
             `report/${new generator().getFormattedDate()}_IER.csv`,
             {

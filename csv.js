@@ -122,8 +122,6 @@ class csvProcess {
     let bigIncomeName = "";
     let totalTransactions = data.length;
 
-    if (totalTransactions == 0) return true;
-
     for (let i = 0; i < data.length; i++) {
       if (data[i].Type == "Income") {
         income.push(data[i]);
