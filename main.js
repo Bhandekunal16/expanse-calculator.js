@@ -32,20 +32,25 @@ app.whenReady().then(() => {
     notification.show();
   });
 
-  serverProcess.stderr.on("data", (data) => {
-    console.error(`Server Error: ${data}`);
+  serverProcess.stderr.on("error", (data) => {
+    const notification = new Notification({
+      title: "BudgetMate",
+      body: `Server Error: ${data}`,
+    });
+    notification.show();
   });
 
-  waitForServer(`http://localhost:${serverPort}`, () => {
+  waitForServer(`http://localhost:3000`, () => {
     mainWindow = new BrowserWindow({
-      width: 800,
+      width: 850,
       height: 600,
       webPreferences: {
         nodeIntegration: false,
       },
+      darkTheme: true,
     });
 
-    mainWindow.loadURL(`http://localhost:${serverPort}`);
+    mainWindow.loadURL(`http://localhost:3000`);
   });
 });
 
