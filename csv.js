@@ -80,7 +80,11 @@ class csvProcess {
 
   async maintain_account(path, updatedData) {
     if (!fs.existsSync(path)) {
-      fs.writeFileSync(path, `"totalExpanse","totalIncome","totalTransactions"\n0,0,0`, "utf8");
+      fs.writeFileSync(
+        path,
+        `"totalExpanse","totalIncome","totalTransactions"\n0,0,0`,
+        "utf8"
+      );
       console.log(`File created: ${path}`);
     }
     let dataArray = [];
@@ -117,6 +121,8 @@ class csvProcess {
     let bigExpanseName = "";
     let bigIncomeName = "";
     let totalTransactions = data.length;
+
+    if (totalTransactions == 0) return true;
 
     for (let i = 0; i < data.length; i++) {
       if (data[i].Type == "Income") {
