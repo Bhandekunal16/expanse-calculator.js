@@ -1,0 +1,6 @@
+Date,Category,Amount,Description,Source,Type
+2025-03-01,Food,50.5,Lunch,Expense,Expense
+2025-03-02,Transport,30,Bus,fare,Expense
+2025-03-03,Entertainment,20,Movie,ticket,Income
+2025-03-04,Utilities,100,Electricity,bill,Expense
+2025-03-05,Groceries,40,Supermarket,shopping,Income

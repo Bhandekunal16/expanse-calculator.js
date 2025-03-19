@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Notification } = require("electron");
 const path = require("path");
 const { exec } = require("child_process");
 const http = require("http");
@@ -25,7 +25,12 @@ app.whenReady().then(() => {
   const serverProcess = exec("node app.js");
 
   serverProcess.stdout.on("data", (data) => {
-    console.log(`Server: ${data}`);
+    const notification = new Notification({
+      title: "BudgetMate",
+      body: `Server: ${data}`,
+    });
+
+    notification.show();
   });
 
   serverProcess.stderr.on("data", (data) => {
