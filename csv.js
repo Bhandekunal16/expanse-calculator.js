@@ -1,5 +1,6 @@
 const fs = require("fs");
 const csv = require("csv-parser");
+const { parse } = require("json2csv");
 
 class csvProcess {
   #results = [];
@@ -15,6 +16,23 @@ class csvProcess {
         .on("error", (err) => {
           reject(err);
         });
+    });
+  }
+
+  write(path, data) {
+    return new Promise((resolve, reject) => {
+      try {
+        const csvData = parse(data);
+        fs.writeFile(path, csvData, "utf8", (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(path);
+          }
+        });
+      } catch (error) {
+        reject(error);
+      }
     });
   }
 
@@ -45,7 +63,8 @@ class csvProcess {
         }
       }
     }
-    console.log({
+
+    return {
       expanse,
       income,
       totalExpanse,
@@ -54,7 +73,7 @@ class csvProcess {
       bigIncome,
       bigExpanseName,
       bigIncomeName,
-    });
+    };
   }
 }
 

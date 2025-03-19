@@ -3,6 +3,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const csv = require("./csv");
+const generator = require("./generator");
 
 const uploadsDir = "./uploads";
 if (!fs.existsSync(uploadsDir)) {
@@ -24,6 +25,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.use(express.static(uploadsDir));
+app.use("/report", express.static("report"));
 
 app.get("/", (req, res) => {
   res.send(`
@@ -34,15 +36,24 @@ app.get("/", (req, res) => {
   `);
 });
 
-app.post("/upload", upload.single("file"), (req, res) => {
+app.post("/upload", upload.single("file"), async (req, res) => {
   if (req.file) {
-    res.send(
-      `File uploaded successfully: <a href="/${req.file.filename}">${req.file.filename}</a>`
-    );
     if (req.file.filename.endsWith(".csv")) {
-      new csv().read(`uploads/${req.file.filename}`).then((ele) => {
-        new csv().generate_report(ele);
-      });
+      const ele = await new csv().read(`uploads/${req.file.filename}`);
+      const report = new csv().generate_report(ele);
+      const download = await new csv().write(
+        `report/${new generator().getFormattedDate()}_IncomeExpanse.csv`,
+        {
+          totalExpanse: report.totalExpanse,
+          totalIncome: report.totalIncome,
+          bigExpanse: report.bigExpanse,
+          bigIncome: report.bigIncome,
+          bigExpanseName: report.bigExpanseName,
+          bigIncomeName: report.bigIncomeName,
+        }
+      );
+
+      res.send(`<a href="${download}">${download}</a>`);
     }
   } else {
     res.send("No file uploaded");
