@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
     cb(null, uploadsDir);
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, `${new generator().getFormattedDate()}_IE` + path.extname(file.originalname));
   },
 });
 
