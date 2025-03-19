@@ -19,7 +19,11 @@ const storage = multer.diskStorage({
     cb(null, uploadsDir);
   },
   filename: function (req, file, cb) {
-    cb(null, `${new generator().getFormattedDate()}_IE` + path.extname(file.originalname));
+    cb(
+      null,
+      `${new generator().getFormattedDate()}_IE` +
+        path.extname(file.originalname)
+    );
   },
 });
 
@@ -43,7 +47,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
       const ele = await new csv().read(`uploads/${req.file.filename}`);
       const report = new csv().generate_report(ele);
       const download = await new csv().write(
-        `report/${new generator().getFormattedDate()}_IncomeExpanse.csv`,
+        `report/${new generator().getFormattedDate()}_IER.csv`,
         {
           totalExpanse: report.totalExpanse,
           totalIncome: report.totalIncome,
@@ -51,6 +55,9 @@ app.post("/upload", upload.single("file"), async (req, res) => {
           bigIncome: report.bigIncome,
           bigExpanseName: report.bigExpanseName,
           bigIncomeName: report.bigIncomeName,
+          totalTransactions: report.totalTransactions,
+          avgIncome: report.avgIncome,
+          avgExpense: report.avgExpense,
         }
       );
       res.send(`<a href="${download}">${download}</a>`);

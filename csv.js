@@ -45,6 +45,8 @@ class csvProcess {
     let totalExpanse = 0;
     let bigExpanseName = "";
     let bigIncomeName = "";
+    let totalTransactions = data.length;
+
     for (let i = 0; i < data.length; i++) {
       if (data[i].Type == "Income") {
         income.push(data[i]);
@@ -64,6 +66,13 @@ class csvProcess {
       }
     }
 
+    let avgIncome = income.length
+      ? (totalIncome / income.length).toFixed(2)
+      : 0;
+    let avgExpense = expanse.length
+      ? (totalExpanse / expanse.length).toFixed(2)
+      : 0;
+
     return {
       expanse,
       income,
@@ -73,6 +82,9 @@ class csvProcess {
       bigIncome,
       bigExpanseName,
       bigIncomeName,
+      totalTransactions,
+      avgIncome,
+      avgExpense,
     };
   }
 }
