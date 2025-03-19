@@ -6,6 +6,7 @@ const csv = require("./csv");
 const generator = require("./generator");
 
 const uploadsDir = "./uploads";
+const reportDir = "./report";
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
@@ -25,7 +26,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.use(express.static(uploadsDir));
-app.use("/report", express.static("report"));
+app.use(reportDir, express.static(reportDir));
 
 app.get("/", (req, res) => {
   res.send(`
