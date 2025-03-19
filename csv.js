@@ -79,6 +79,10 @@ class csvProcess {
   }
 
   async maintain_account(path, updatedData) {
+    if (!fs.existsSync(path)) {
+      fs.writeFileSync(path, `"totalExpanse","totalIncome","totalTransactions"\n0,0,0`, "utf8");
+      console.log(`File created: ${path}`);
+    }
     let dataArray = [];
     fs.createReadStream(path)
       .pipe(csv())
