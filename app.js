@@ -94,7 +94,9 @@ app.post("/upload", upload.single("file"), async (req, res) => {
           totalTransactions: report.totalTransactions,
         }),
       ]);
-      res.send(`<a href="${download}">${download}</a>`);
+      res.send(`<a href="${download}" style="padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; display: inline-block;">
+                  Download File ${download}</a>
+`);
     }
   } else {
     res.send("No file uploaded");
