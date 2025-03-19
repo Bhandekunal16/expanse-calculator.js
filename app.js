@@ -34,7 +34,8 @@ app.use("/report", express.static("report"));
 
 app.get("/", (req, res) => {
   res.send(`
-    <div
+   <h1>BudgetMate</h1>
+<div
   style="
     display: flex;
     justify-content: center;
@@ -48,18 +49,30 @@ app.get("/", (req, res) => {
     method="post"
     enctype="multipart/form-data"
     style="
-      margin-top: 20%;
+      margin-top: 10%;
       border: 1px #000 solid;
       width: 40dvw;
       height: 40dvh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
     "
   >
     <input type="file" name="file" />
-    <button type="submit">Upload</button>
+    <button
+      type="submit"
+      style="
+        padding: 10px 15px;
+        background-color: #007bff;
+        border: 1px transparent solid;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
+      "
+    >
+      Upload
+    </button>
   </form>
 </div>
 
