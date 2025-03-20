@@ -31,7 +31,11 @@ def open_file():
             headers = rows[0]
             result = [dict(zip(headers, row)) for row in rows]
             report = generate_report(result)
-            obj1 = {
+            file_service_module.write_file(
+                "uploads", f"{date_module.get_date()}_IE.csv", rows
+            )
+            file_service_module.write_file_obj(
+                "report", f"{date_module.get_date()}__IER.csv", {
                 "totalExpanse": report["totalExpanse"],
                 "totalIncome": report["totalIncome"],
                 "bigExpanse": report["bigExpanse"],
@@ -42,11 +46,6 @@ def open_file():
                 "avgIncome": report["avgIncome"],
                 "avgExpense": report["avgExpense"],
             }
-            file_service_module.write_file(
-                "uploads", f"{date_module.get_date()}_IE.csv", rows
-            )
-            file_service_module.write_file_obj(
-                "report", f"{date_module.get_date()}__IER.csv", obj1
             )
             process.write_file_obj_list_process(
                 [
