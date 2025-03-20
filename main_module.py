@@ -3,6 +3,9 @@ import tkinter as tk
 class main_module:
     def packer(input):
         return input.pack(pady=10)
+    
+    def destroy(input):
+        return input.destroy()
 
     def label_module(input, value):
         return tk.Label(input, text=value)

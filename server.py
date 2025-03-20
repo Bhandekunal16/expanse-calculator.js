@@ -78,7 +78,7 @@ def open_file():
                     },
                 ),
             )
-            main_module.delete(button)
+            main_module.destroy(button)
             Text_sub_module.insert(
                 text_box, "Report generated successfully at BudgetMateReports/report\n"
             )
