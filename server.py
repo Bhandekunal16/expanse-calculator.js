@@ -78,9 +78,8 @@ def open_file():
                     },
                 ),
             )
-            Text_sub_module.insert(
-                text_box, "Report generated successfully at BudgetMateReports/report\n"
-            )
+            main_module.notification_module(
+                "Success", "Report generated successfully at BudgetMateReports/report")
 
 
 def generate_report(data: list) -> dict:

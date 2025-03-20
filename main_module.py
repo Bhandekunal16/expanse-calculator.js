@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 class main_module:
     def packer(input):
@@ -15,6 +16,9 @@ class main_module:
     
     def text_module(input):
         return tk.Text(input, wrap="word", height=2, width=60)
+    
+    def notification_module(header, content):
+        messagebox.showinfo(header, content)
     
     def entry_module(input):
         return tk.Entry(input, width=50)
