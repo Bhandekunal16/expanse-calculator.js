@@ -66,7 +66,7 @@ def open_file():
                     },
                 ),
             )
-            Text_sub_module.insert(text_box, 'Report generated successfully\n at BudgetMateReports/report\n')
+            Text_sub_module.insert(text_box, 'Report generated successfully at BudgetMateReports/report\n')
 
 
 def generate_report(data):
