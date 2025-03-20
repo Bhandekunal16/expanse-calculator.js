@@ -8,8 +8,8 @@ import concurrent.futures
 
 executor = concurrent.futures.ThreadPoolExecutor()
 
-window = tk.Tk()
-window.title("BudgetMate")
+root = tk.Tk()
+root.title("BudgetMate")
 
 class process:
     def write_file_obj_list_process(List: list):
@@ -128,16 +128,16 @@ def generate_report(data: list) -> dict:
     }
 
 
-label = main_module.label_module(window, "Welcome in BudgetMate!")
+label = main_module.label_module(root, "Welcome in BudgetMate!")
 main_module.packer(label)
 
-button = main_module.button_module(window, "select file", open_file)
+button = main_module.button_module(root, "select file", open_file)
 main_module.packer(button)
 
-text_box = main_module.text_module(window)
+text_box = main_module.text_module(root)
 main_module.packer(text_box)
 
 
-window.mainloop()
+root.mainloop()
 
 
