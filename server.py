@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import filedialog
 from main_module import Text_sub_module, main_module
@@ -48,13 +49,16 @@ def open_file():
             file_service_module.write_file_obj_list(
                 "report", "ID.csv", report["income"]
             )
-            
+            home_directory = os.path.expanduser("~")
+            folder_path = os.path.join(home_directory, f"BudgetMateReports/report")
+            os.makedirs(folder_path, exist_ok=True)
+            files = os.path.join(folder_path, "account.csv")
             loop = asyncio.get_event_loop()
             loop.run_in_executor(
                 executor,
                 asyncio.run,
                 user_module.maintain_account(
-                    "report/account.csv",
+                    files,
                     {
                         "totalExpanse": report["totalExpanse"],
                         "totalIncome": report["totalIncome"],
@@ -62,7 +66,7 @@ def open_file():
                     },
                 ),
             )
-            Text_sub_module.insert(text_box, content)
+            Text_sub_module.insert(text_box, 'Report generated successfully\n at BudgetMateReports/report\n')
 
 
 def generate_report(data):

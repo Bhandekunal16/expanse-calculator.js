@@ -1,23 +1,36 @@
 import csv
 from datetime import datetime
+import os
 import aiofiles
 from aiofiles import os as aio_os
 import asyncio
 
 class file_service_module:
     def write_file(folderPath, file_path, content):
-        with open(f"{folderPath}/{file_path}", "w") as file:
+        home_directory = os.path.expanduser("~")
+        folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
+        os.makedirs(folder_path, exist_ok=True)
+        file = os.path.join(folder_path, file_path)
+        with open(file, "w") as file:
             writer = csv.writer(file)
             writer.writerows(content)
             
     def write_file_obj(folderPath, file_path, content):
-        with open(f"{folderPath}/{file_path}", "w") as file:
+        home_directory = os.path.expanduser("~")
+        folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
+        os.makedirs(folder_path, exist_ok=True)
+        files = os.path.join(folder_path, file_path)
+        with open(files, "w") as file:
             writer = csv.DictWriter(file, fieldnames=content.keys())
             writer.writeheader()
             writer.writerow(content)
             
     def write_file_obj_list(folderPath, file_path, content):
-        with open(f"{folderPath}/{file_path}", "w") as file:
+        home_directory = os.path.expanduser("~")
+        folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
+        os.makedirs(folder_path, exist_ok=True)
+        files = os.path.join(folder_path, file_path)
+        with open(files, "w") as file:
             writer = csv.DictWriter(file, fieldnames=content[0].keys())
             writer.writeheader()
             writer.writerows(content)
