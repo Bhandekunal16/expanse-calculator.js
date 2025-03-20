@@ -11,7 +11,7 @@ class main_module:
         return tk.Button(input, text=Text, command=fun)
     
     def text_module(input, value):
-        return tk.Text(input, wrap="word", height=10, width=50)
+        return tk.Text(input, wrap="word", height=10, width=50, padx=10, pady=10)
     
     def entry_module(input):
         return tk.Entry(input, width=50)
@@ -19,4 +19,5 @@ class main_module:
 class Text_sub_module:
     def insert(input, content):
         input.insert(tk.END, content)
+        input.config(state="disabled")
     
