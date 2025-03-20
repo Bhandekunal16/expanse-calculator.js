@@ -135,7 +135,7 @@ main_module.packer(label)
 button = main_module.button_module(window, "select file", open_file)
 main_module.packer(button)
 
-text_box = main_module.text_module(window, "")
+text_box = main_module.text_module(window)
 main_module.packer(text_box)
 
 
