@@ -16,7 +16,7 @@ window.title("BudgetMate")
 
 def open_file():
     file_path = filedialog.askopenfilename(
-        title="Select a file", filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")]
+        title="Select a file", filetypes=[("Text Files", "*.csv"), ("All Files", "*.*")]
     )
     if file_path:
         with open(file_path, "r") as file:
