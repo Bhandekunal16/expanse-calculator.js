@@ -1,14 +1,12 @@
 import os
+import asyncio
 import tkinter as tk
 from tkinter import filedialog
 from main_module import Text_sub_module, main_module
-from fs import file_service_module
-from fs import date_module
-from fs import user_module
-import asyncio
+from fs import file_service_module, date_module, user_module
 import concurrent.futures
 
-executor = concurrent.futures.ThreadPoolExecutor() 
+executor = concurrent.futures.ThreadPoolExecutor()
 
 window = tk.Tk()
 window.title("BudgetMate")
@@ -66,7 +64,9 @@ def open_file():
                     },
                 ),
             )
-            Text_sub_module.insert(text_box, 'Report generated successfully at BudgetMateReports/report\n')
+            Text_sub_module.insert(
+                text_box, "Report generated successfully at BudgetMateReports/report\n"
+            )
 
 
 def generate_report(data):
