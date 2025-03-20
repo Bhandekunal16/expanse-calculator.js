@@ -11,6 +11,13 @@ executor = concurrent.futures.ThreadPoolExecutor()
 window = tk.Tk()
 window.title("BudgetMate")
 
+class process:
+    def write_file_obj_list_process(List):
+        for i in List:
+            file_service_module.write_file_obj_list(
+                i["foldername"], i["filename"], i["content"]
+            )
+
 
 def open_file():
     file_path = filedialog.askopenfilename(
@@ -41,11 +48,19 @@ def open_file():
             file_service_module.write_file_obj(
                 "report", f"{date_module.get_date()}__IER.csv", obj1
             )
-            file_service_module.write_file_obj_list(
-                "report", "ED.csv", report["expanse"]
-            )
-            file_service_module.write_file_obj_list(
-                "report", "ID.csv", report["income"]
+            process.write_file_obj_list_process(
+                [
+                    {
+                        "foldername": "report",
+                        "filename": "ED.csv",
+                        "content": report["expanse"],
+                    },
+                    {
+                        "foldername": "report",
+                        "filename": "ED.csv",
+                        "content": report["income"],
+                    },
+                ]
             )
             home_directory = os.path.expanduser("~")
             folder_path = os.path.join(home_directory, f"BudgetMateReports/report")
@@ -126,3 +141,5 @@ main_module.packer(text_box)
 
 
 window.mainloop()
+
+
