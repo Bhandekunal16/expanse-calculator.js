@@ -13,7 +13,7 @@ class main_module:
     def button_module(input, Text, fun):
         return tk.Button(input, text=Text, command=fun)
     
-    def text_module(input, value):
+    def text_module(input):
         return tk.Text(input, wrap="word", height=2, width=60)
     
     def entry_module(input):
