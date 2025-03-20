@@ -11,7 +11,7 @@ class main_module:
         return tk.Button(input, text=Text, command=fun)
     
     def text_module(input, value):
-        return tk.Text(input, wrap="word", height=10, width=50, padx=10, pady=10)
+        return tk.Text(input, wrap="word", height=3, width=60)
     
     def entry_module(input):
         return tk.Entry(input, width=50)
