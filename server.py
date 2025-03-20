@@ -12,7 +12,7 @@ window = tk.Tk()
 window.title("BudgetMate")
 
 class process:
-    def write_file_obj_list_process(List):
+    def write_file_obj_list_process(List: list):
         for i in List:
             file_service_module.write_file_obj_list(
                 i["foldername"], i["filename"], i["content"]
@@ -83,7 +83,7 @@ def open_file():
             )
 
 
-def generate_report(data):
+def generate_report(data: list) -> dict:
     expanse = []
     income = []
     big_income = 0
