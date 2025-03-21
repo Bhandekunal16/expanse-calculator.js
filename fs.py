@@ -5,9 +5,12 @@ import aiofiles
 from aiofiles import os as aio_os
 
 class file_service_module:
-    def write_file(folderPath: str, file_path: str, content: str):
-        home_directory = os.path.expanduser("~")
-        folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
+    def __init__(self):
+        self.home_directory = os.path.expanduser("~")
+        
+    def write_file(self, folderPath: str, file_path: str, content: str):
+        # home_directory = os.path.expanduser("~")
+        folder_path = os.path.join(self.home_directory, f"BudgetMateReports/{folderPath}")
         os.makedirs(folder_path, exist_ok=True)
         file = os.path.join(folder_path, file_path)
         with open(file, "w") as file:

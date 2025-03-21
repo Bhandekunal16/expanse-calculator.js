@@ -31,7 +31,7 @@ def open_file():
             headers = rows[0]
             result = [dict(zip(headers, row)) for row in rows]
             report = generate_report(result)
-            file_service_module.write_file(
+            file_service_module().write_file(
                 "uploads", f"{date_module.get_date()}_IE.csv", rows
             )
             file_service_module.write_file_obj(
