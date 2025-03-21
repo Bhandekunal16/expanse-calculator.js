@@ -5,7 +5,7 @@ import aiofiles
 from aiofiles import os as aio_os
 
 class file_service_module:
-    def write_file(folderPath, file_path, content):
+    def write_file(folderPath: str, file_path: str, content: str):
         home_directory = os.path.expanduser("~")
         folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
         os.makedirs(folder_path, exist_ok=True)
@@ -14,7 +14,7 @@ class file_service_module:
             writer = csv.writer(file)
             writer.writerows(content)
             
-    def write_file_obj(folderPath, file_path, content):
+    def write_file_obj(folderPath : str, file_path: str, content: str):
         home_directory = os.path.expanduser("~")
         folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
         os.makedirs(folder_path, exist_ok=True)
@@ -24,7 +24,7 @@ class file_service_module:
             writer.writeheader()
             writer.writerow(content)
             
-    def write_file_obj_list(folderPath, file_path, content):
+    def write_file_obj_list(folderPath: str, file_path : str, content: str):
         home_directory = os.path.expanduser("~")
         folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
         os.makedirs(folder_path, exist_ok=True)
@@ -40,7 +40,7 @@ class date_module:
         return date.strftime("%d-%m-%Y")
     
 class user_module:
-    async def maintain_account(path, updated_data):
+    async def maintain_account(path : str, updated_data: dict):
        file_exists = await aio_os.path.exists(path)
        if not file_exists:
         async with aiofiles.open(path, mode='w', encoding='utf-8') as file:
