@@ -61,8 +61,7 @@ def open_file():
                     },
                 ]
             )
-            home_directory = os.path.expanduser("~")
-            folder_path = os.path.join(home_directory, f"BudgetMateReports/report")
+            folder_path = os.path.join(os.path.expanduser("~"), f"BudgetMateReports/report")
             os.makedirs(folder_path, exist_ok=True)
             files = os.path.join(folder_path, "account.csv")
             loop = asyncio.get_event_loop()
