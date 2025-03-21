@@ -56,7 +56,7 @@ def open_file():
                     },
                     {
                         "foldername": "report",
-                        "filename": "ED.csv",
+                        "filename": "ID.csv",
                         "content": report["income"],
                     },
                 ]
