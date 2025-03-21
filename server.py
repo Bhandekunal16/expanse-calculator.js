@@ -10,6 +10,8 @@ import concurrent.futures
 executor = concurrent.futures.ThreadPoolExecutor()
 
 root = tk.Tk()
+icon = tk.PhotoImage(file="./partner_13450276.png")
+root.iconphoto(True, icon)
 root.title("BudgetMate")
 
 
