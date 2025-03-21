@@ -11,6 +11,7 @@ executor = concurrent.futures.ThreadPoolExecutor()
 root = tk.Tk()
 root.title("BudgetMate")
 
+
 class process:
     def write_file_obj_list_process(List: list):
         for i in List:
@@ -35,17 +36,19 @@ def open_file():
                 "uploads", f"{date_module.get_date()}_IE.csv", rows
             )
             file_service_module().write_file_obj(
-                "report", f"{date_module.get_date()}__IER.csv", {
-                "totalExpanse": report["totalExpanse"],
-                "totalIncome": report["totalIncome"],
-                "bigExpanse": report["bigExpanse"],
-                "bigIncome": report["bigIncome"],
-                "bigExpanseName": report["bigExpanseName"],
-                "bigIncomeName": report["bigIncomeName"],
-                "totalTransactions": report["totalTransactions"],
-                "avgIncome": report["avgIncome"],
-                "avgExpense": report["avgExpense"],
-            }
+                "report",
+                f"{date_module.get_date()}__IER.csv",
+                {
+                    "totalExpanse": report["totalExpanse"],
+                    "totalIncome": report["totalIncome"],
+                    "bigExpanse": report["bigExpanse"],
+                    "bigIncome": report["bigIncome"],
+                    "bigExpanseName": report["bigExpanseName"],
+                    "bigIncomeName": report["bigIncomeName"],
+                    "totalTransactions": report["totalTransactions"],
+                    "avgIncome": report["avgIncome"],
+                    "avgExpense": report["avgExpense"],
+                },
             )
             process.write_file_obj_list_process(
                 [
@@ -61,7 +64,9 @@ def open_file():
                     },
                 ]
             )
-            folder_path = os.path.join(os.path.expanduser("~"), f"BudgetMateReports/report")
+            folder_path = os.path.join(
+                os.path.expanduser("~"), f"BudgetMateReports/report"
+            )
             os.makedirs(folder_path, exist_ok=True)
             files = os.path.join(folder_path, "account.csv")
             loop = asyncio.get_event_loop()
@@ -78,7 +83,8 @@ def open_file():
                 ),
             )
             main_module.notification_module(
-                "Success", "Report generated successfully at BudgetMateReports/report")
+                "Success", "Report generated successfully at BudgetMateReports/report"
+            )
 
 
 def generate_report(data: list) -> dict:
@@ -92,7 +98,7 @@ def generate_report(data: list) -> dict:
     big_income_name = ""
     total_transactions = len(data)
 
-    for transaction  in data:
+    for transaction in data:
         if transaction["Type"] == "Income":
             income.append(transaction)
             amount = float(transaction["Amount"])
@@ -142,5 +148,3 @@ try:
 except KeyboardInterrupt:
     print("\nProgram stopped by user.")
     root.destroy()
-
-
