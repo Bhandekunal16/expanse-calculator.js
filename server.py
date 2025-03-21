@@ -92,7 +92,7 @@ def generate_report(data: list) -> dict:
     big_income_name = ""
     total_transactions = len(data)
 
-    for transaction in data:
+    for transaction  in data:
         if transaction["Type"] == "Income":
             income.append(transaction)
             amount = float(transaction["Amount"])
