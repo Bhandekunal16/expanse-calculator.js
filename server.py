@@ -14,7 +14,7 @@ root.title("BudgetMate")
 class process:
     def write_file_obj_list_process(List: list):
         for i in List:
-            file_service_module.write_file_obj_list(
+            file_service_module().write_file_obj_list(
                 i["foldername"], i["filename"], i["content"]
             )
 
@@ -34,7 +34,7 @@ def open_file():
             file_service_module().write_file(
                 "uploads", f"{date_module.get_date()}_IE.csv", rows
             )
-            file_service_module.write_file_obj(
+            file_service_module().write_file_obj(
                 "report", f"{date_module.get_date()}__IER.csv", {
                 "totalExpanse": report["totalExpanse"],
                 "totalIncome": report["totalIncome"],

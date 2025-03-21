@@ -9,7 +9,6 @@ class file_service_module:
         self.home_directory = os.path.expanduser("~")
         
     def write_file(self, folderPath: str, file_path: str, content: str):
-        # home_directory = os.path.expanduser("~")
         folder_path = os.path.join(self.home_directory, f"BudgetMateReports/{folderPath}")
         os.makedirs(folder_path, exist_ok=True)
         file = os.path.join(folder_path, file_path)
@@ -17,9 +16,9 @@ class file_service_module:
             writer = csv.writer(file)
             writer.writerows(content)
             
-    def write_file_obj(folderPath : str, file_path: str, content: dict | str):
-        home_directory = os.path.expanduser("~")
-        folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
+    def write_file_obj(self, folderPath : str, file_path: str, content: dict | str):
+        # home_directory = os.path.expanduser("~")
+        folder_path = os.path.join(self.home_directory, f"BudgetMateReports/{folderPath}")
         os.makedirs(folder_path, exist_ok=True)
         files = os.path.join(folder_path, file_path)
         with open(files, "w") as file:
@@ -27,9 +26,9 @@ class file_service_module:
             writer.writeheader()
             writer.writerow(content)
             
-    def write_file_obj_list(folderPath: str, file_path : str, content: list | str):
-        home_directory = os.path.expanduser("~")
-        folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
+    def write_file_obj_list(self, folderPath: str, file_path : str, content: list | str):
+        # home_directory = os.path.expanduser("~")
+        folder_path = os.path.join(self.home_directory, f"BudgetMateReports/{folderPath}")
         os.makedirs(folder_path, exist_ok=True)
         files = os.path.join(folder_path, file_path)
         with open(files, "w") as file:
