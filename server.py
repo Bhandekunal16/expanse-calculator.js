@@ -2,7 +2,8 @@ import os
 import asyncio
 import tkinter as tk
 from tkinter import filedialog
-from main_module import Text_sub_module, main_module
+from command_module import command_line_module
+from main_module import main_module
 from fs import file_service_module, date_module, user_module
 import concurrent.futures
 
@@ -146,5 +147,4 @@ main_module.packer(text_box)
 try:
     root.mainloop()
 except KeyboardInterrupt:
-    print("\nProgram stopped by user.")
-    root.destroy()
+    command_line_module.graceful_exit(root)
