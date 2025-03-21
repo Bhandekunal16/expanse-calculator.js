@@ -14,7 +14,7 @@ class file_service_module:
             writer = csv.writer(file)
             writer.writerows(content)
             
-    def write_file_obj(folderPath : str, file_path: str, content: str):
+    def write_file_obj(folderPath : str, file_path: str, content: dict | str):
         home_directory = os.path.expanduser("~")
         folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
         os.makedirs(folder_path, exist_ok=True)
@@ -24,7 +24,7 @@ class file_service_module:
             writer.writeheader()
             writer.writerow(content)
             
-    def write_file_obj_list(folderPath: str, file_path : str, content: str):
+    def write_file_obj_list(folderPath: str, file_path : str, content: list | str):
         home_directory = os.path.expanduser("~")
         folder_path = os.path.join(home_directory, f"BudgetMateReports/{folderPath}")
         os.makedirs(folder_path, exist_ok=True)
