@@ -137,6 +137,10 @@ text_box = main_module.text_module(root)
 main_module.packer(text_box)
 
 
-root.mainloop()
+try:
+    root.mainloop()
+except KeyboardInterrupt:
+    print("\nProgram stopped by user.")
+    root.destroy()
 
 
